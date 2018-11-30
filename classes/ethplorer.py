@@ -5,7 +5,7 @@ import datetime
 
 class ethplorer_line:
 
-    WITHDRAW = "withdraw"
+    WITHDRAW = "withdrawal"
     DEPOSIT = "deposit"
 
     def __init__(self, date, txhash, from_address, to_address, token_name, token_address, value, usdPrice, symbol, own_address):

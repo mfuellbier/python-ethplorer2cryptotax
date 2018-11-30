@@ -44,7 +44,7 @@ def main():
         help="path to the output file (write to stdout if omitted)")
 
     parser.add_argument(
-        "exchange_name", nargs="?", default="Metamask",
+        "exchange_name", nargs="?", default="ETH Wallet",
         metavar="EXCHANGE NAME", type=str,
         help="Exchange name (Metamask, MyETH, Trezor, Ledger, ...)")
 
