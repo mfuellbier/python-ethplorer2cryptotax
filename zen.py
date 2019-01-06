@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 """
-Converts csv export file form Ethplorer to a format, which can be uploaded to cryptotax.
+Converts csv export file from Horizen Secure Node to a format, which can be uploaded to cryptotax.
 """
 import argparse
 import classes.cryptotax as cryptotax
@@ -25,11 +25,6 @@ def main():
         "account_name", nargs="?", default="Zen_1",
         metavar="ACCOUNT NAME", type=str,
         help="Account name (Metamask Account 1, My ETH Account 2, ...)")
-
-    parser.add_argument(
-        "--address", nargs="?", default="",
-        metavar="own ETH Address", type=str,
-        help="own ETH Address (it will be fetched from input file if ommited)")
 
     args = parser.parse_args()
 
