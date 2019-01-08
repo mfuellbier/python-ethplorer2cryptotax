@@ -46,6 +46,7 @@ def main():
                 # No zen mined
                 continue
             line_zen = zen.zen_line(*line_list)
+            line_zen.extract_transaction_id()
 
             # Convert zen_line to cryptotax_line
             if not line_zen.paid == "-":
@@ -54,7 +55,7 @@ def main():
                                                          "",
                                                          line_zen.zen,
                                                          "",
-                                                         line_zen.transaction_id,
+                                                         line_zen.extract_transaction_id(),
                                                          "",
                                                          "",
                                                          "deposit",

@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import datetime
+import re
 
 
 class zen_line:
@@ -19,3 +20,6 @@ class zen_line:
 
     def convert_date(self):
         return datetime.datetime.strptime(self.paid, "%Y-%m-%d %H:%M:%S").strftime("%d.%m.%Y %H:%M:%S")
+
+    def extract_transaction_id(self):
+        return re.sub("<[^>]*>", "", self.transaction_id)
