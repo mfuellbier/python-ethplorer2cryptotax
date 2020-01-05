@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 """
-Converts csv export file from Horizen Secure Node to a format, which can be uploaded to cryptotax.
+Converts csv export file from Horizen Secure Node to a format, which can be
+uploaded to cryptotax.
 """
 import argparse
 import classes.cryptotax as cryptotax
@@ -42,27 +43,31 @@ def main():
                 FIRST_LINE = False
                 continue
             line_list = line.strip().split('","')
-            if line_list[6] == "0.00000000":
-                # No zen mined
-                continue
             line_zen = zen.zen_line(*line_list)
 
             # Convert zen_line to cryptotax_line
             if not line_zen.paid == "-":
-                cryptotaxline = cryptotax.cryptotax_line(line_zen.convert_date(),
-                                                         "ZEN",
-                                                         "",
-                                                         line_zen.zen,
-                                                         "",
-                                                         line_zen.extract_transaction_id(),
-                                                         "",
-                                                         "",
-                                                         "deposit",
-                                                         "")
+                cryptotaxline = cryptotax.cryptotax_line(
+                                  line_zen.convert_date(),
+                                  "ZEN",
+                                  "",
+                                  line_zen.zen,
+                                  "",
+                                  line_zen.extract_transaction_id(),
+                                  "",
+                                  "",
+                                  "deposit",
+                                  "masternode")
                 cryptotax_file.list.append(cryptotaxline)
+            elif line_zen.status == "exclude":
+                # Not paid and excluded
+                print("[+] ID " + line_zen.ID + " not paid. Exclueded.")
+            elif line_zen.status == "rollup":
+                # Not paid yet. rollup
+                print("[+] ID " + line_zen.ID + " rollup. Will be paid later.")
             else:
-                # Not paid yet
-                print("[+] ID " + line_zen.ID + " not paid yet.")
+                print("[+] ID " + line_zen.ID +
+                      ". Not paid yet probably. But better check that!")
 
     # print cryptotax file to output
     cryptotax_file.print_lines(args.output)

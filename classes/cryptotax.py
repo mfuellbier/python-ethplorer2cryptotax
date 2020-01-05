@@ -3,7 +3,7 @@
 
 class cryptotax_file:
 
-    HEADLINE = "exchange_name,account_name,trade_date,buy_asset,sell_asset,buy_amount,sell_amount,exchange_order_id,fee,fee_asset,transaction_type,deposit_clarification"
+    HEADLINE = "exchange_name,account_name,trade_date,buy_asset,sell_asset,buy_amount,sell_amount,exchange_order_id,fee,fee_asset,transaction_type,clarification"
 
     def __init__(self, exchange_name, account_name):
         self.exchange_name = exchange_name
